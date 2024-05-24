@@ -21,7 +21,7 @@ const LoginPage = () => {
     }
 
     try {
-      const response = await fetch(`http://localhost:3001/api/users/login`, {
+      const response = await fetch(`https://express-app-pied.vercel.app/login`, {
         method: 'POST', // Use POST for sending user data
         headers: {
           'Content-Type': 'application/json',
