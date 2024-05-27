@@ -7,11 +7,11 @@
 /* Ensure the entire page has the same background as other pages */
 body {
   background: linear-gradient(135deg, #6e8efb, #a777e3);
-  height: 100vh;
+  /* height: 100vh; */
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0;
+  /* margin: 0; */
   font-family: 'Arial', sans-serif; /* Add a font family for consistency */
 }
 
@@ -82,7 +82,6 @@ body {
 
 
 
-/* Login page styles */
 /* Login page styles */
 
 .loginPage {
@@ -313,25 +312,41 @@ body {
   margin-right: 10px; /* Move text closer to the button */
 }
 
+/* -------------------------------------------- */
 
-
-
-/* TaskForm styles */
+/* Task Form Container */
 .task-form-container {
+  max-width: 960px; /* Same as max-w-4xl */
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin-top: 20px;
+  height: 100vh; /* Full height */
 }
 
+.task-form-header {
+  background-color: #f5f5f5;
+  padding: 1rem 2rem;
+  border-bottom: 1px solid #ddd;
+  flex-shrink: 0; /* Prevent header from shrinking */
+}
+
+.task-form-content {
+  flex-grow: 1; /* Allow content to grow */
+  overflow-y: auto; /* Enable vertical scrolling */
+  padding: 1rem 2rem;
+}
+
+/* Logout Button */
 .logout-button {
-  background-color: #df0d22;
+  background-color: #6e8efb;
   color: white;
+  padding: 0.5rem 1rem;
   border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  margin-bottom: 40px;
+  border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s;
 }
@@ -340,34 +355,36 @@ body {
   background-color: #4b6cb7;
 }
 
+/* Task Form */
 .task-form {
-  width: 300px;
-  padding: 20px;
-  background-color: #f3f4f6;
-  border-radius: 10px;
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .form-label {
   font-weight: bold;
-  margin-bottom: 5px;
+  color: #4a5568;
 }
 
 .form-input {
-  width: 100%;
-  padding: 8px;
   border: 1px solid #ccc;
-  border-radius: 5px;
-  margin-bottom: 10px;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.form-input:focus {
+  border-color: #6e8efb;
+  outline: none;
+  box-shadow: 0 0 8px rgba(110, 142, 251, 0.3);
 }
 
 .submit-button {
-  width: 100%;
   background-color: #6e8efb;
   color: white;
   border: none;
-  padding: 10px 0;
-  border-radius: 5px;
+  border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s;
 }
@@ -376,19 +393,54 @@ body {
   background-color: #4b6cb7;
 }
 
+/* Existing Tasks */
 .existing-tasks {
-  margin-top: 20px;
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .task-list {
-  list-style: none;
+  list-style-type: none;
   padding: 0;
 }
 
 .task-item {
-  margin-bottom: 5px;
+  background-color: #f5f5f5;
+  padding: 1rem;
+  border-radius: 4px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
+.edit-button {
+  background-color: #48bb78;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.edit-button:hover {
+  background-color: #38a169;
+}
+
+.delete-button {
+  background-color: #e53e3e;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.delete-button:hover {
+  background-color: #c53030;
+}
+
+
+/* ------------------------------------ */
 
 
 
