@@ -13,7 +13,7 @@ const TaskForm = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('/api/tasks', {
+      const response = await axios.post('https://express-app-pied.vercel.app/api/tasks', {
         name,
         description,
         completed,
@@ -24,7 +24,7 @@ const TaskForm = () => {
       setCompleted(0);
       setDescription('');
 
-      const fetchedTasks = await axios.get('/api/tasks');
+      const fetchedTasks = await axios.get('https://express-app-pied.vercel.app/api/tasks');
       setTasks(fetchedTasks.data);
     } catch (error) {
       console.error('Error creating task:', error);
@@ -38,7 +38,7 @@ const TaskForm = () => {
 
   async function deleteTask(taskId) {
     try {
-      const response = await fetch(`/api/tasks/${taskId}`, {
+      const response = await fetch(`https://express-app-pied.vercel.app/api/tasks/${taskId}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
@@ -57,7 +57,7 @@ const TaskForm = () => {
   const handleTaskCompletion = async (taskID, isChecked) => {
     try {
       // Update task data on the server
-      const response = await fetch(`/api/tasks/${taskID}`, {
+      const response = await fetch(`https://express-app-pied.vercel.app/api/tasks/${taskID}`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ completed: isChecked }),
@@ -81,7 +81,7 @@ const TaskForm = () => {
 
   useEffect(() => {
     const fetchTasks = async () => {
-      const response = await axios.get('/api/tasks');
+      const response = await axios.get('https://express-app-pied.vercel.app/api/tasks');
       setTasks(response.data);
     };
 
