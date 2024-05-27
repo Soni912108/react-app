@@ -21,8 +21,8 @@ const LoginPage = () => {
     }
 
     try {
-      const response = await fetch(`https://express-app-pied.vercel.app/api/users/login`, {
-        method: 'POST', // Use POST for sending user data
+      const response = await fetch('https://express-app-pied.vercel.app/api/users/login', {
+        method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
@@ -33,21 +33,24 @@ const LoginPage = () => {
         }),
       });
   
-      const data = await response.json(); // Parse the response as JSON
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+  
+      const data = await response.json();
   
       if (data.success) {
         console.log('User logged in successfully!');
         setLoginSuccess(true);
-        // Store the token in localStorage
         localStorage.setItem('userToken', data.token);
         navigate('/tasks');
       } else {
-        setErrorMessage(data.message); // Set error message from response
+        setErrorMessage(data.message);
         console.error('Logging in failed:', data.error);
       }
     } catch (error) {
       console.error('Error logging the user:', error);
-      setErrorMessage('An unexpected error occurred.'); // Set generic message for unexpected errors
+      setErrorMessage('An unexpected error occurred.');
     }
   };
   
