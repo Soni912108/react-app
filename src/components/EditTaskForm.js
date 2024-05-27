@@ -18,7 +18,7 @@ const EditTaskForm = () => {
     const fetchData = async () => {
       setIsLoading(true);
       try {
-        const response = await fetch(`https://express-app-pied.vercel.app/api/tasks/${taskId}`);
+        const response = await fetch(`/api/tasks/${taskId}`);
         if (!response.ok) {
           throw new Error(`Error fetching task: ${response.statusText}`);
         }
