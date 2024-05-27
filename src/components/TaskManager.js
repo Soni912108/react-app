@@ -10,68 +10,60 @@ const TaskForm = () => {
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    try {
-      const response = await axios.post('http://express-app-pied.vercel.app/api/tasks', {
-        name,
-        description,
-        completed,
-      });
-
-      console.log('Task created successfully:', response.data);
-      setName('');
-      setCompleted(false);
-      setDescription('');
-
-      const fetchedTasks = await axios.get('http://express-app-pied.vercel.app/api/tasks');
-      setTasks(fetchedTasks.data);
-    } catch (error) {
-      console.error('Error creating task:', error);
-    }
-  };
-
-  const handleLogout = () => {
-    localStorage.removeItem('userToken');
-    navigate('/login');
-  };
-
-  const deleteTask = async (taskId) => {
-    try {
-      const response = await axios.delete(`http://express-app-pied.vercel.app/api/tasks/${taskId}`);
-      if (response.status === 200) {
-        alert('Task deleted successfully');
-        setTasks(tasks.filter(task => task._id !== taskId));
+      e.preventDefault();
+    
+      try {
+        const response = await axios.post('https://express-app-pied.vercel.app/api/tasks', {
+          name,
+          description,
+          completed,
+        });
+    
+        console.log('Task created successfully:', response.data);
+        setName('');
+        setCompleted(false);
+        setDescription('');
+    
+        const fetchedTasks = await axios.get('https://express-app-pied.vercel.app/api/tasks');
+        setTasks(fetchedTasks.data);
+      } catch (error) {
+        console.error('Error creating task:', error);
       }
-    } catch (error) {
-      console.error('Error deleting task:', error);
-    }
-  };
-
-  const handleTaskCompletion = async (taskID, isChecked) => {
-    try {
-      const response = await axios.patch(`http://express-app-pied.vercel.app/api/tasks/${taskID}`, {
-        completed: isChecked,
-      });
-      const updatedTask = response.data;
-      setTasks(tasks.map(task => task._id === taskID ? updatedTask : task));
-    } catch (error) {
-      console.error('Error updating task completion:', error);
-    }
-  };
-
-  const handleEditTask = (taskId) => {
-    navigate(`/tasks/${taskId}/edit`);
-  };
-
-  useEffect(() => {
-    const fetchTasks = async () => {
-      const response = await axios.get('http://express-app-pied.vercel.app/api/tasks');
-      setTasks(response.data);
     };
-
-    fetchTasks();
+    
+    const deleteTask = async (taskId) => {
+      try {
+        const response = await axios.delete(`https://express-app-pied.vercel.app/api/tasks/${taskId}`);
+        if (response.status === 200) {
+          alert('Task deleted successfully');
+          setTasks(tasks.filter(task => task._id !== taskId));
+        }
+      } catch (error) {
+        console.error('Error deleting task:', error);
+      }
+    };
+    
+    const handleTaskCompletion = async (taskID, isChecked) => {
+      try {
+        const response = await axios.patch(`https://express-app-pied.vercel.app/api/tasks/${taskID}`, {
+          completed: isChecked,
+        });
+        const updatedTask = response.data;
+        setTasks(tasks.map(task => task._id === taskID ? updatedTask : task));
+      } catch (error) {
+        console.error('Error updating task completion:', error);
+      }
+    };
+    
+    useEffect(() => {
+      const fetchTasks = async () => {
+        const response = await axios.get('https://express-app-pied.vercel.app/api/tasks');
+        setTasks(response.data);
+      };
+    
+      fetchTasks();
   }, []);
+
 
   return (
     <div className="task-form-container">
