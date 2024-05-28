@@ -1,29 +1,27 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect} from 'react';
 import { useNavigate } from "react-router-dom";
 import '../App.css';
-
 
 const LoginPage = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const navigate = useNavigate(); // Import and use useNavigate hook
+  const navigate = useNavigate();
   const [loginSuccess, setLoginSuccess] = useState(false);
-  const [errorMessage, setErrorMessage] = useState(null); // State to store error message
+  const [errorMessage, setErrorMessage] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Basic validation to ensure username and password are not empty
     if (!username || !password) {
       alert('Username or password is empty!');
-      return; // Prevent submitting the request
+      return;
     }
+
     setIsLoading(true);
     try {
-      const response = await fetch('https://express-app-pied.vercel.app/api/users/login', {
+      const response = await fetch(`https://express-app-pied.vercel.app/api/users/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -34,17 +32,13 @@ const LoginPage = () => {
           password,
         }),
       });
-  
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-  
+
       const data = await response.json();
-  
       if (data.success) {
         console.log('User logged in successfully!');
         setLoginSuccess(true);
         localStorage.setItem('userToken', data.token);
+        localStorage.setItem('loggedInUserId', data.userId);
         navigate('/tasks');
       } else {
         setErrorMessage(data.message);
@@ -57,27 +51,27 @@ const LoginPage = () => {
       setIsLoading(false);
     }
   };
-  
+
   const handleCloseErrorMessage = () => {
-    setErrorMessage(null); // Set error message state to null to hide it
+    setErrorMessage(null);
   };
-  
 
   const handleRegisterClick = () => {
     navigate('/register');
   };
 
-
   useEffect(() => {
     if (errorMessage) {
-      const timeout = setTimeout(() => setErrorMessage(null), 3000); // Set timeout for 3 seconds
-      return () => clearTimeout(timeout); // Cleanup function to clear timeout on unmount
+      const timeout = setTimeout(() => setErrorMessage(null), 3000);
+      return () => clearTimeout(timeout);
     }
-  }, [errorMessage]); // Only run when errorMessage changes
-  
+  }, [errorMessage]);
+
   if (isLoading) {
     return <p className="loading-message">Loading...</p>;
   }
+
+  
   return (
     <div className="loginPage">
       <div className="second">
