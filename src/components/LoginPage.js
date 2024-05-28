@@ -10,6 +10,8 @@ const LoginPage = () => {
   const navigate = useNavigate(); // Import and use useNavigate hook
   const [loginSuccess, setLoginSuccess] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null); // State to store error message
+  const [isLoading, setIsLoading] = useState(false);
+
   
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -19,7 +21,7 @@ const LoginPage = () => {
       alert('Username or password is empty!');
       return; // Prevent submitting the request
     }
-
+    setIsLoading(true);
     try {
       const response = await fetch('https://express-app-pied.vercel.app/api/users/login', {
         method: 'POST',
@@ -51,6 +53,8 @@ const LoginPage = () => {
     } catch (error) {
       console.error('Error logging the user:', error);
       setErrorMessage('An unexpected error occurred.');
+    } finally {
+      setIsLoading(false);
     }
   };
   
@@ -71,7 +75,9 @@ const LoginPage = () => {
     }
   }, [errorMessage]); // Only run when errorMessage changes
   
-
+  if (isLoading) {
+    return <p className="loading-message">Loading...</p>;
+  }
   return (
     <div className="loginPage">
       <div className="second">
