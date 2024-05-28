@@ -1,57 +1,50 @@
-/* General styles for the form */
-.edit-task-form {
-    background-color: rgba(255, 255, 255, 0.9);
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    width: 120%; /* Adjust width to take up more horizontal space */
-    box-sizing: border-box;
-    margin: 0 auto; /* Center the form */
-  }
-  
-  /* Styles for labels */
-  .edit-task-form label {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.5rem;
-    font-weight: bold;
-    font-size: 14px;
-    color: #4a5568;
-    margin-bottom: 10px;
-  }
-  
-  /* Styles for inputs and textarea */
-  .edit-task-form input,
-  .edit-task-form textarea {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 16px;
-    width: 100%;
-    box-sizing: border-box;
-    margin-bottom: 20px;
-  }
-  
-  /* Additional styles for textarea */
-  .edit-task-form textarea {
-    resize: vertical; /* Allow vertical resizing only */
-    min-height: 250px; /* Minimum height for textarea */
-  }
-  
-  /* Styles for submit button */
-  .edit-task-form button {
-    padding: 12px 24px;
-    background-color: #6e8efb; /* Blue color for consistency */
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    width: 100%;
-  }
-  
-  .edit-task-form button:hover {
-    background-color: #4b6cb7; /* Darker blue on hover */
-  }
+/* General styles for the form container */
+.edit-task-form-container {
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 2rem auto; /* Center the form with margin */
+}
+
+/* Styles for labels */
+.edit-task-form .form-label {
+  font-weight: bold;
+  color: #4a5568;
+}
+
+/* Styles for inputs and textarea */
+.edit-task-form .form-input {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.edit-task-form .form-input:focus {
+  border-color: #6e8efb;
+  outline: none;
+  box-shadow: 0 0 8px rgba(110, 142, 251, 0.3);
+}
+
+/* Styles for submit button */
+.edit-task-form .submit-button {
+  background-color: #6e8efb;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  padding: 12px 24px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: 100%;
+}
+
+.edit-task-form .submit-button:hover {
+  background-color: #4b6cb7;
+}
