@@ -14,7 +14,7 @@ const EditTaskForm = () => {
     const fetchData = async () => {
       setIsLoading(true);
       try {
-        const response = await fetch(`http://express-app-pied.vercel.app/api/tasks/${taskId}`);
+        const response = await fetch(`https://express-app-pied.vercel.app/api/tasks/${taskId}`);
         if (!response.ok) {
           throw new Error(`Error fetching task: ${response.statusText}`);
         }
@@ -41,7 +41,7 @@ const EditTaskForm = () => {
     event.preventDefault();
 
     try {
-      const response = await fetch(`http://express-app-pied.vercel.app/api/tasks/${taskId}`, {
+      const response = await fetch(`https://express-app-pied.vercel.app/api/tasks/${taskId}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(task),
