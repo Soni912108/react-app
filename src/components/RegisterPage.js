@@ -11,7 +11,10 @@ const RegisterPage = () => {
   const [registerSuccess, setRegisterSuccess] = useState(false);
   const navigate = useNavigate(); // Import and use useNavigate hook
   const [errorMessage, setErrorMessage] = useState(null); // State to store error message
+  const [isLoading, setIsLoading] = useState(false);
 
+
+  
   const checkPasswordStrength = (password) => {
     const hasCapitalLetter = /[A-Z]/.test(password);
     const hasSymbol = /[!@#$%^&*()]/.test(password);
@@ -37,6 +40,8 @@ const RegisterPage = () => {
         return; // Early return if password is weak
       }
 
+
+    setIsLoading(true);
     try {
       const response = await fetch('https://express-app-pied.vercel.app/api/users/register', {
         method: 'POST',
@@ -69,6 +74,8 @@ const RegisterPage = () => {
     } catch (error) {
       setErrorMessage(error); // Set error message from response
       console.error('Error registering user:', error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -88,7 +95,11 @@ const RegisterPage = () => {
     navigate('/login');
   };
 
+  if (isLoading) {
+    return <p className="loading-message">Loading...</p>;
+  }
 
+  
   return (
     <div className="registerPage">
       <div className="second">
