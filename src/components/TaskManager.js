@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 
@@ -8,6 +8,8 @@ const TaskForm = () => {
   const [tasks, setTasks] = useState([]);
   const [description, setDescription] = useState('');
   const navigate = useNavigate();
+  const loggedInUserId = localStorage.getItem('loggedInUserId');
+  const userToken = localStorage.getItem('userToken');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -17,6 +19,11 @@ const TaskForm = () => {
         name,
         description,
         completed,
+        createdBy: loggedInUserId,
+      }, {
+        headers: {
+          'Authorization': `Bearer ${userToken}`,
+        }
       });
 
       console.log('Task created successfully:', response.data);
@@ -24,21 +31,45 @@ const TaskForm = () => {
       setCompleted(false);
       setDescription('');
 
-      const fetchedTasks = await axios.get('https://express-app-pied.vercel.app/api/tasks');
-      setTasks(fetchedTasks.data);
+      // Fetch updated tasks
+      fetchTasks();
     } catch (error) {
       console.error('Error creating task:', error);
     }
   };
 
+  const fetchTasks = useCallback(async () => {
+    try {
+      const response = await axios.get(`https://express-app-pied.vercel.app/api/tasks/${loggedInUserId}`, {
+        headers: {
+          'Authorization': `Bearer ${userToken}`,
+        }
+      });
+      setTasks(response.data);
+    } catch (error) {
+      console.error('Error fetching tasks:', error);
+    }
+  }, [loggedInUserId, userToken]);
+
+  useEffect(() => {
+    if (loggedInUserId && userToken) {
+      fetchTasks();
+    }
+  }, [loggedInUserId, userToken, fetchTasks]);
+
   const handleLogout = () => {
     localStorage.removeItem('userToken');
+    localStorage.removeItem('loggedInUserId');
     navigate('/login');
   };
 
   const deleteTask = async (taskId) => {
     try {
-      const response = await axios.delete(`https://express-app-pied.vercel.app/api/tasks/${taskId}`);
+      const response = await axios.delete(`https://express-app-pied.vercel.app/api/tasks/${taskId}`, {
+        headers: {
+          'Authorization': `Bearer ${userToken}`,
+        }
+      });
       if (response.status === 200) {
         alert('Task deleted successfully');
         setTasks(tasks.filter(task => task._id !== taskId));
@@ -52,6 +83,10 @@ const TaskForm = () => {
     try {
       const response = await axios.patch(`https://express-app-pied.vercel.app/api/tasks/${taskID}`, {
         completed: isChecked,
+      }, {
+        headers: {
+          'Authorization': `Bearer ${userToken}`,
+        }
       });
       const updatedTask = response.data;
       setTasks(tasks.map(task => task._id === taskID ? updatedTask : task));
@@ -64,14 +99,7 @@ const TaskForm = () => {
     navigate(`/tasks/${taskId}/edit`);
   };
 
-  useEffect(() => {
-    const fetchTasks = async () => {
-      const response = await axios.get('https://express-app-pied.vercel.app/api/tasks');
-      setTasks(response.data);
-    };
 
-    fetchTasks();
-  }, []);
 
   return (
     <div className="task-form-container">
