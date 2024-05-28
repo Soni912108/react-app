@@ -11,8 +11,6 @@ const TaskForm = () => {
   const loggedInUserId = localStorage.getItem('loggedInUserId');
   const userToken = localStorage.getItem('userToken');
   
-  console.log('the logged in user id :', loggedInUserId);
-  
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -27,8 +25,6 @@ const TaskForm = () => {
           'Authorization': `Bearer ${userToken}`,
         }
       });
-
-      console.log('Task created successfully:', response.data);
       setName('');
       setCompleted(false);
       setDescription('');
