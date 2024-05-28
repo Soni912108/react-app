@@ -166,6 +166,13 @@ body {
   margin-top: 10px;
 }
 
+.loading-message {
+  /* Style properties for the loading message */
+  text-align: center;
+  font-size: 1.2rem; /* Adjust font size as needed */
+  margin: 2rem 0; /* Adjust spacing as needed */
+}
+
 
 .error-message {
   position: fixed; /* Make it positioned relative to the viewport */
