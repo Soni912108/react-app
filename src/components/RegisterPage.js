@@ -14,7 +14,7 @@ const RegisterPage = () => {
   const [isLoading, setIsLoading] = useState(false);
 
 
-  
+
   const checkPasswordStrength = (password) => {
     const hasCapitalLetter = /[A-Z]/.test(password);
     const hasSymbol = /[!@#$%^&*()]/.test(password);
@@ -39,8 +39,7 @@ const RegisterPage = () => {
         alert('Password must be at least 10 characters and contain a capital letter, a symbol, and a number!');
         return; // Early return if password is weak
       }
-
-
+    
     setIsLoading(true);
     try {
       const response = await fetch('https://express-app-pied.vercel.app/api/users/register', {
@@ -64,7 +63,8 @@ const RegisterPage = () => {
 
         // Store the token in localStorage
         localStorage.setItem('userToken', data.token);
-
+        localStorage.setItem('loggedInUserId', username);
+        
         navigate('/tasks');
 
       } else {
@@ -99,7 +99,7 @@ const RegisterPage = () => {
     return <p className="loading-message">Loading...</p>;
   }
 
-  
+
   return (
     <div className="registerPage">
       <div className="second">
