@@ -48,3 +48,10 @@
 .edit-task-form .submit-button:hover {
   background-color: #4b6cb7;
 }
+
+.loading-message {
+  /* Style properties for the loading message */
+  text-align: center;
+  font-size: 1.2rem; /* Adjust font size as needed */
+  margin: 2rem 0; /* Adjust spacing as needed */
+}
