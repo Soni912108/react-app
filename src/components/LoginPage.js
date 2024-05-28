@@ -39,6 +39,7 @@ const LoginPage = () => {
         setLoginSuccess(true);
         localStorage.setItem('userToken', data.token);
         localStorage.setItem('loggedInUserId', data.userId);
+        console.log(data.userId);
         navigate('/tasks');
       } else {
         setErrorMessage(data.message);
