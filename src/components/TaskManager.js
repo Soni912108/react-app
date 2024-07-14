@@ -26,7 +26,7 @@ const TaskForm = () => {
     }
 
     try {
-      const response = await axios.post('https://express-app-pied.vercel.app/api/tasks/create', {
+      const response = await axios.post('http://localhost:3001/api/tasks/create', {
         name,
         description,
         completed,
@@ -55,7 +55,7 @@ const TaskForm = () => {
   const fetchTasks = useCallback(async () => {
     try {
       setLoading(true);
-      const response = await axios.get('https://express-app-pied.vercel.app/api/tasks/getAllTasks', {
+      const response = await axios.get('http://localhost:3001/api/tasks/getAllTasks', {
         headers: {
           'Authorization': `Bearer ${userToken}`,
         },
@@ -86,7 +86,7 @@ const TaskForm = () => {
 
   const deleteTask = async (taskId) => {
     try {
-      const response = await axios.delete(`https://express-app-pied.vercel.app/api/tasks/deleteTask/${taskId}`, {
+      const response = await axios.delete(`http://localhost:3001/api/tasks/deleteTask/${taskId}`, {
         headers: {
           'Authorization': `Bearer ${userToken}`,
         },
@@ -106,7 +106,7 @@ const TaskForm = () => {
 
   const handleTaskCompletion = async (taskID, isChecked) => {
     try {
-      const response = await axios.patch(`https://express-app-pied.vercel.app/api/tasks/updateTask/${taskID}`, {
+      const response = await axios.patch(`http://localhost:3001/api/tasks/updateTask/${taskID}`, {
         completed: isChecked,
       }, {
         headers: {
@@ -170,7 +170,7 @@ const TaskForm = () => {
         </form>
         {loading ? (
           <div className="loading-screen flex justify-center items-center h-64">
-            <div className="spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full text-blue-500" role="status">
+            <div className="spinner-border" role="status">
               <span className="visually-hidden">Loading...</span>
             </div>
           </div>
