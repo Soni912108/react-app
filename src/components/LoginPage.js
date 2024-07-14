@@ -14,11 +14,14 @@ const LoginPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!username || !password) {
-      alert('Username or password is empty!');
+    // Email validation regex
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!username || !password || !emailRegex.test(email)) {
+      alert('Please enter valid username, email, and password');
       return;
     }
-
+    
     setIsLoading(true);
     try {
       const response = await fetch(`https://express-app-pied.vercel.app/api/users/login`, {
