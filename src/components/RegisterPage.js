@@ -29,9 +29,17 @@ const RegisterPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // Email validation regex
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
     if (password !== confirmPassword) {
       alert('Passwords do not match!');
-      return; // Early return if passwords don't match
+      return;
+    }
+
+    if (!emailRegex.test(email)) {
+      alert('Invalid email format');
+      return;
     }
 
     const isStrongPassword = checkPasswordStrength(password);
