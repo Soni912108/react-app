@@ -1,0 +1,83 @@
+/* General styles for the form container */
+.edit-task-form-container {
+  background-color: #ffffff; /* Set background color to white */
+  padding: 2.5rem; /* Increase padding for a more spacious form */
+  border-radius: 12px; /* Slightly rounded corners for a modern look */
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1); /* Slightly larger shadow for a subtle elevation effect */
+  max-width: 900px; /* Increase max-width for a larger form */
+  width: 100%;
+  box-sizing: border-box;
+  margin: 2rem auto; /* Center the form with margin */
+}
+
+/* Styles for labels */
+.edit-task-form-container .form-label {
+  font-weight: 500; /* Slightly lighter weight for modern look */
+  color: #4a5568;
+  margin-bottom: 0.5rem; /* Add space below labels */
+}
+
+/* Styles for inputs and textarea */
+.edit-task-form-container .form-input {
+  border: 1px solid #ccc;
+  border-radius: 8px; /* More rounded corners */
+  font-size: 16px;
+  width: 100%;
+  padding: 12px; /* Increased padding for better touch targets */
+  margin-bottom: 1.5rem; /* Adjusted margin for more spacing */
+}
+
+.edit-task-form-container .form-input:focus {
+  border-color: #6e8efb;
+  outline: none;
+  box-shadow: 0 0 8px rgba(110, 142, 251, 0.3);
+}
+
+/* Styles for checkbox */
+.edit-task-form-container .form-checkbox {
+  accent-color: #6e8efb; /* Modern color for the checkbox */
+  margin-right: 0.5rem; /* Space between checkbox and label */
+}
+
+/* Styles for submit button */
+.edit-task-form-container .submit-button {
+  background-color: #6e8efb;
+  color: white;
+  border: none;
+  border-radius: 8px; /* Rounded corners for the button */
+  font-size: 16px;
+  padding: 14px 0; /* Increased vertical padding for a bigger button */
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s; /* Added transform transition for hover effect */
+  width: 100%;
+}
+
+.edit-task-form-container .submit-button:hover {
+  background-color: #4b6cb7;
+  transform: scale(1.02); /* Slightly enlarge the button on hover */
+}
+
+/* Styles for cancel button */
+.edit-task-form-container .cancel-button {
+  background-color: #ff5722; /* Red-orange color */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  padding: 14px 0;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  width: 100%;
+}
+
+.edit-task-form-container .cancel-button:hover {
+  background-color: #e64a19;
+  transform: scale(1.02);
+}
+
+.loading-message {
+  /* Style properties for the loading message */
+  text-align: center;
+  font-size: 1.2rem;
+  margin: 2rem 0;
+}
