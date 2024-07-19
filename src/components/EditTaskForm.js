@@ -18,7 +18,7 @@ const EditTaskForm = () => {
     const fetchData = async () => {
       setIsLoading(true);
       try {
-        const response = await axios.get(`https://express-app-pied.vercel.app/api/tasks/getOneTask/${taskId}`, {
+        const response = await axios.get(`${process.env.REACT_APP_SERVER_APP_API_URL}/api/tasks/getOneTask/${taskId}`, {
           headers: {
             'Authorization': `Bearer ${userToken}`,
           },
@@ -46,7 +46,7 @@ const EditTaskForm = () => {
     event.preventDefault();
 
     try {
-      const response = await axios.put(`https://express-app-pied.vercel.app/api/tasks/updateTask/${taskId}`, task, {
+      const response = await axios.put(`${process.env.REACT_APP_SERVER_APP_API_URL}/api/tasks/updateTask/${taskId}`, task, {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${userToken}`,
