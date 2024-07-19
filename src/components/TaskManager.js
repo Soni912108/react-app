@@ -26,7 +26,7 @@ const TaskForm = () => {
     }
 
     try {
-      const response = await axios.post('https://express-app-pied.vercel.app/api/tasks/create', {
+      const response = await axios.post(`${process.env.REACT_APP_SERVER_APP_API_URL}/api/tasks/create`, {
         name,
         description,
         completed,
@@ -55,7 +55,7 @@ const TaskForm = () => {
   const fetchTasks = useCallback(async () => {
     try {
       setLoading(true);
-      const response = await axios.get('https://express-app-pied.vercel.app/api/tasks/getAllTasks', {
+      const response = await axios.get(`${process.env.REACT_APP_SERVER_APP_API_URL}/api/tasks/getAllTasks`, {
         headers: {
           'Authorization': `Bearer ${userToken}`,
         },
@@ -86,7 +86,7 @@ const TaskForm = () => {
 
   const deleteTask = async (taskId) => {
     try {
-      const response = await axios.delete(`https://express-app-pied.vercel.app/api/tasks/deleteTask/${taskId}`, {
+      const response = await axios.delete(`${process.env.REACT_APP_SERVER_APP_API_URL}/api/tasks/deleteTask/${taskId}`, {
         headers: {
           'Authorization': `Bearer ${userToken}`,
         },
@@ -106,7 +106,7 @@ const TaskForm = () => {
 
   const handleTaskCompletion = async (taskID, isChecked) => {
     try {
-      const response = await axios.patch(`https://express-app-pied.vercel.app/api/tasks/updateTask/${taskID}`, {
+      const response = await axios.patch(`${process.env.REACT_APP_SERVER_APP_API_URL}/api/tasks/updateTask/${taskID}`, {
         completed: isChecked,
       }, {
         headers: {
