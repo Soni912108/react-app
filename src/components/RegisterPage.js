@@ -66,15 +66,11 @@ const RegisterPage = () => {
       const data = await response.json(); // Parse the response as JSON
 
       if (data.success) {
-        console.log('User registered successfully!');
+        navigate('/tasks');
         setRegisterSuccess(true); // Set flag for successful registration
-
         // Store the token in localStorage
         localStorage.setItem('userToken', data.token);
         localStorage.setItem('loggedInUserId', username);
-        
-        navigate('/tasks');
-
       } else {
         setErrorMessage(data.message); // Set error message from response
         console.error('Registration failed:', data.error);
