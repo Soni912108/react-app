@@ -20,6 +20,12 @@ function App() {
     setIsTokenChecked(true);
   }, []);
 
+  const handleLogout = () => {
+    localStorage.removeItem('userToken');
+    setLoggedIn(false);
+    setEmail('');
+  };
+
   if (!isTokenChecked) {
     return <div>Loading...</div>; // Show a loading state while checking the token
   }
