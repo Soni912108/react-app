@@ -35,8 +35,7 @@ Before you begin, ensure you have met the following requirements:
 
 2.Install the dependencies:
 
-     git clone https://github.com/Soni912108/react-app.git
-     cd react-app
+     npm install
   
    
 ##  Configuration
