@@ -95,7 +95,7 @@ const LoginPage = ({ setLoggedIn, setEmail }) => {
               <label className="text-gray-700 mb-2">Email:</label>
               <input
                 type="email"
-                value={email}
+                value={localEmail}
                 onChange={(e) => setEmail(e.target.value)}
                 className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-blue-500 focus:ring-2"
               />
