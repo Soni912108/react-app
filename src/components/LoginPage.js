@@ -35,13 +35,15 @@ const LoginPage = () => {
           password,
         }),
       });
-
+    
       const data = await response.json();
+      console.log('Login response:', data); // Log the response data
+    
       if (data.success) {
+        console.log('Login successful, navigating to tasks'); // Log success
+        localStorage.setItem('userToken', data.token);
         navigate('/tasks');
         setLoginSuccess(true);
-        localStorage.setItem('userToken', data.token);
-        
       } else {
         setErrorMessage(data.message);
         console.error('Logging in failed:', data.error);
@@ -52,7 +54,6 @@ const LoginPage = () => {
     } finally {
       setIsLoading(false);
     }
-  };
 
   const handleCloseErrorMessage = () => {
     setErrorMessage(null);
