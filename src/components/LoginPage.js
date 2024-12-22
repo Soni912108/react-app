@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import '../App.css';
 
@@ -54,6 +54,7 @@ const LoginPage = () => {
     } finally {
       setIsLoading(false);
     }
+  };
 
   const handleCloseErrorMessage = () => {
     setErrorMessage(null);
@@ -74,7 +75,6 @@ const LoginPage = () => {
     return <p className="loading-message">Loading...</p>;
   }
 
-  
   return (
     <div className="loginPage">
       <div className="second">
