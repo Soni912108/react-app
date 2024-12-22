@@ -38,10 +38,10 @@ const LoginPage = () => {
 
       const data = await response.json();
       if (data.success) {
-        console.log('User logged in successfully!');
+        navigate('/tasks');
         setLoginSuccess(true);
         localStorage.setItem('userToken', data.token);
-        navigate('/tasks');
+        
       } else {
         setErrorMessage(data.message);
         console.error('Logging in failed:', data.error);
