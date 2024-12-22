@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import '../App.css';
 
-const LoginPage = () => {
+const LoginPage = ({ setLoggedIn, setEmail }) => {
   const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
+  const [localEmail, setLocalEmail] = useState(''); // Renamed to avoid shadowing
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
   const [loginSuccess, setLoginSuccess] = useState(false);
@@ -17,7 +17,7 @@ const LoginPage = () => {
     // Email validation regex
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    if (!username || !password || !emailRegex.test(email)) {
+    if (!username || !password || !emailRegex.test(localEmail)) {
       alert('Please enter valid username, email, and password');
       return;
     }
@@ -31,7 +31,7 @@ const LoginPage = () => {
         },
         body: JSON.stringify({
           username,
-          email,
+          email: localEmail, // Use the renamed localEmail
           password,
         }),
       });
@@ -40,7 +40,8 @@ const LoginPage = () => {
       console.log('Login response:', data); // Log the response data
     
       if (data.success) {
-        console.log('Login successful, navigating to tasks'); // Log success
+        setLoggedIn(true);
+        setEmail(localEmail); // Set the email in the parent component
         localStorage.setItem('userToken', data.token);
         navigate('/tasks');
         setLoginSuccess(true);
